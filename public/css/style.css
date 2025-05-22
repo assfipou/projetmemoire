@@ -1,0 +1,91 @@
+/* Navbar */
+.nav-link {
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #0d6efd;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #0d6efd !important;
+}
+
+.navbar-brand strong {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0d6efd; /* Couleur bleue Bootstrap */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Header avec Image de Fond */
+
+    .header-bg {
+        background-image: url('../images/eleve.jpg'); /* ou /images/eleve.jpg */
+        background-size: cover; /* L'image couvre toute la zone */
+        background-position: center; /* Centrer l'image */
+        min-height: 100vh; /* L'image de fond doit occuper toute la hauteur de la fenêtre */
+        display: flex; /* Utilisation de Flexbox pour centrer le contenu */
+        justify-content: center;
+        align-items: center;
+        color: white; /* Couleur du texte */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre pour rendre le texte plus lisible */
+        background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1
+}
+.header-bg::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(1, 1, 1, 0.4); /* Noir semi-transparent */
+z-index: 0; /* Mettre le pseudo-élément derrière le contenu */
+    z-index: 0; /* Mettre le pseudo-élément derrière le contenu */
+}
+.header-bg .container {
+    position: relative;
+    z-index: 2;
+}
+/* Corps de la page */
+body {
+    background-color: #00008B; /* Bleu foncé classique */
+    color: #00008B; /* Couleur du texte par défaut */
+    font-family: 'Arial', sans-serif; /* Police de caractères par défaut */
+    margin-top: 70px; /* Ajoute de l'espace sous la navbar */
+}
+footer {
+    background-color: #00008B; /* Couleur de fond du footer */
+    color:  #00008B; /* Couleur du texte dans le footer */
+    padding: 20px 0; /* Espacement intérieur du footer */
+    text-align: center; /* Centrer le texte dans le footer */
+    position: relative;
+    z-index: 1;
+}
+
+.container-text {
+    padding: 80px 0; /* Ajuste l'espacement pour le texte de bienvenue */
+}
