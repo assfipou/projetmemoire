@@ -45,7 +45,7 @@
                 </li>
             </ul>
             
-            <a href="{{ route('register') }}" class="bg-blue-600 btn btn-light hover:bg-blue-700 font-semibold py-2 px-4 rounded-lg shadow">
+            <a href="{{ route('registerPage') }}" class="bg-blue-600 btn btn-light hover:bg-blue-700 font-semibold py-2 px-4 rounded-lg shadow">
                 Se connecter/S'inscrire
             </a>
         </div>

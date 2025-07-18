@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,32 +23,25 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(Request $request)
+    public function store(LoginRequest $request): RedirectResponse
     {
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        // Rediriger selon le rôle de l'utilisateur
+        $userRole = Auth::user()->role;
         
-        $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
-            
-            // Rediriger vers le bon tableau de bord selon le rôle
-            if (Auth::user()->role == 'admin') {
-                return redirect()->route('pageadmin');
-            } elseif (Auth::user()->role == 'professeur') {
-                return redirect()->route('pageprof');
-            } else {
-                return redirect()->route('pageeleve');
-            }
+        switch ($userRole) {
+            case 'admin':
+                return redirect()->intended(route('pageadmin'));
+            case 'professeur':
+                return redirect()->intended(route('pageprof'));
+            case 'eleve':
+                return redirect()->intended(route('pageeleve'));
+            default:
+                return redirect()->intended(RouteServiceProvider::HOME);
         }
-        else {
-
-        return back()->withErrors([
-            'email' => 'Les identifiants fournis ne sont pas valides.',
-             
-        ]);
-         }
     }
 
     /**

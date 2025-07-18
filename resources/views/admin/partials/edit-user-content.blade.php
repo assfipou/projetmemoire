@@ -1,0 +1,279 @@
+<!-- Contenu de modification d'utilisateur -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- Main content -->
+        <div class="col-12 p-0">
+            <div class="main-content" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+                <!-- Header -->
+                <div class="content-header bg-white shadow-sm border-bottom p-4 mb-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1 text-dark">
+                                <i class="fas fa-user-edit me-2 text-primary"></i>
+                                Modifier l'utilisateur
+                            </h1>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="#" onclick="loadContent('dashboard')" class="text-decoration-none">Accueil</a></li>
+                                    <li class="breadcrumb-item"><a href="#" onclick="loadContent('users')" class="text-decoration-none">Utilisateurs</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Modifier</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <a href="#" onclick="loadContent('users')" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-1"></i>
+                                Retour
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form content -->
+                <div class="container-fluid px-4 pb-4">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card shadow-lg border-0 rounded-3">
+                                <div class="card-header bg-gradient-primary text-white py-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                    <h5 class="card-title mb-0">
+                                        <i class="fas fa-user-circle me-2"></i>
+                                        Informations utilisateur
+                                    </h5>
+                                </div>
+                                <div class="card-body p-4">
+                                    <form action="{{ route('admin.users.update', $user->id) }}" method="POST" id="editUserForm">
+                                        @csrf
+                                        @method('PUT')
+                                        
+                                        <!-- Informations personnelles -->
+                                        <div class="row mb-4">
+                                            <div class="col-12">
+                                                <h6 class="text-muted mb-3">
+                                                    <i class="fas fa-user me-2"></i>
+                                                    Informations personnelles
+                                                </h6>
+                                                <hr class="mb-4">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="prenom" class="form-label fw-bold">
+                                                    <i class="fas fa-user me-1 text-primary"></i>
+                                                    Prénom
+                                                </label>
+                                                <input type="text" 
+                                                       name="prenom" 
+                                                       id="prenom"
+                                                       value="{{ $user->prenom }}" 
+                                                       class="form-control form-control-lg border-0 shadow-sm" 
+                                                       style="background-color: #f8f9fa;"
+                                                       required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="nom" class="form-label fw-bold">
+                                                    <i class="fas fa-user me-1 text-primary"></i>
+                                                    Nom
+                                                </label>
+                                                <input type="text" 
+                                                       name="nom" 
+                                                       id="nom"
+                                                       value="{{ $user->nom }}" 
+                                                       class="form-control form-control-lg border-0 shadow-sm" 
+                                                       style="background-color: #f8f9fa;"
+                                                       required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="email" class="form-label fw-bold">
+                                                    <i class="fas fa-envelope me-1 text-primary"></i>
+                                                    Email
+                                                </label>
+                                                <input type="email" 
+                                                       name="email" 
+                                                       id="email"
+                                                       value="{{ $user->email }}" 
+                                                       class="form-control form-control-lg border-0 shadow-sm" 
+                                                       style="background-color: #f8f9fa;"
+                                                       required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="dateNaissance" class="form-label fw-bold">
+                                                    <i class="fas fa-calendar me-1 text-primary"></i>
+                                                    Date de Naissance
+                                                </label>
+                                                <input type="date" 
+                                                       name="dateNaissance" 
+                                                       id="dateNaissance"
+                                                       value="{{ $user->dateNaissance }}" 
+                                                       class="form-control form-control-lg border-0 shadow-sm" 
+                                                       style="background-color: #f8f9fa;"
+                                                       required>
+                                            </div>
+                                        </div>
+
+                                        <!-- Informations professionnelles -->
+                                        <div class="row mb-4 mt-5">
+                                            <div class="col-12">
+                                                <h6 class="text-muted mb-3">
+                                                    <i class="fas fa-building me-2"></i>
+                                                    Informations professionnelles
+                                                </h6>
+                                                <hr class="mb-4">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="adresse" class="form-label fw-bold">
+                                                    <i class="fas fa-school me-1 text-primary"></i>
+                                                    Établissement
+                                                </label>
+                                                <input type="text" 
+                                                       name="adresse" 
+                                                       id="adresse"
+                                                       value="{{ $user->adresse }}" 
+                                                       class="form-control form-control-lg border-0 shadow-sm" 
+                                                       style="background-color: #f8f9fa;"
+                                                       required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="role" class="form-label fw-bold">
+                                                    <i class="fas fa-user-tag me-1 text-primary"></i>
+                                                    Rôle
+                                                </label>
+                                                <select name="role" 
+                                                        id="role"
+                                                        class="form-select form-select-lg border-0 shadow-sm" 
+                                                        style="background-color: #f8f9fa;">
+                                                    <option value="eleve" {{ $user->role == 'eleve' ? 'selected' : '' }}>
+                                                        <i class="fas fa-graduation-cap"></i> Élève
+                                                    </option>
+                                                    <option value="professeur" {{ $user->role == 'professeur' ? 'selected' : '' }}>
+                                                        <i class="fas fa-chalkboard-teacher"></i> Professeur
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Boutons d'action -->
+                                        <div class="row mt-5">
+                                            <div class="col-12">
+                                                <hr class="mb-4">
+                                                <div class="d-flex justify-content-between">
+                                                    <a href="#" onclick="loadContent('users')" 
+                                                       class="btn btn-outline-secondary btn-lg px-4">
+                                                        <i class="fas fa-times me-2"></i>
+                                                        Annuler
+                                                    </a>
+                                                    <button type="submit" 
+                                                            class="btn btn-primary btn-lg px-4 shadow" 
+                                                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;"
+                                                            onclick="saveUser()">
+                                                        <i class="fas fa-save me-2"></i>
+                                                        Enregistrer les modifications 
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control:focus, .form-select:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    
+    .card {
+        transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+        transform: translateY(-2px);
+    }
+    
+    .btn {
+        transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+        transform: translateY(-1px);
+    }
+    
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: "›";
+        color: #6c757d;
+    }
+</style>
+
+<script>
+// Fonction simple pour sauvegarder l'utilisateur
+function saveUser() {
+    console.log('Fonction saveUser() appelée');
+    
+    const form = document.getElementById('editUserForm');
+    const button = event.target;
+    
+    if (!form) {
+        alert('Erreur: Formulaire non trouvé');
+        return;
+    }
+    
+    // Afficher l'indicateur de chargement
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enregistrement...';
+    button.disabled = true;
+    
+    // Récupérer les données du formulaire
+    const formData = new FormData(form);
+    
+    // Envoyer la requête AJAX
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Message de succès
+            alert('Utilisateur mis à jour avec succès !');
+            
+            // Rediriger vers la page users
+            if (typeof window.loadContent === 'function') {
+                window.loadContent('users');
+            } else {
+                window.location.href = '/users';
+            }
+        } else {
+            throw new Error(data.message || 'Erreur lors de la mise à jour');
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        alert('Erreur: ' + error.message);
+        
+        // Restaurer le bouton
+        button.innerHTML = originalText;
+        button.disabled = false;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Page de modification d\'utilisateur chargée');
+});
+</script> 

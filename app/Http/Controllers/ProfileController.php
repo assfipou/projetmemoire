@@ -26,6 +26,9 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        // Debug: Log les données reçues
+        \Log::info('Profile update request data:', $request->validated());
+        
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -33,6 +36,9 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+
+        // Debug: Log la sauvegarde
+        \Log::info('Profile updated successfully for user: ' . $request->user()->id);
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

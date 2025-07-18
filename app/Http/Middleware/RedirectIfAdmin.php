@@ -19,10 +19,11 @@ class RedirectIfAdmin
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check() && Auth::user()->role === 'admin') {
+            
             return $next($request);
         }
         
-        return redirect()->route('home'); // Ou une autre route selon ton besoin
+        return redirect()->route('pageadmin'); // Ou une autre route selon ton besoin
     }
 }
 

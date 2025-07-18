@@ -15,10 +15,57 @@
     }
 </style>
 
-<div class="container py-5">
-    <h1 class="mb-4 text-center text-white">📘 Foire Aux Questions</h1>
-    <div class="text-center mb-4">
-        <img src="{{ asset('images/faq.jpg') }}" alt="Quiz" class="img-fluid rounded" style="max-width: 50%; display: block; margin: 0 auto;">
+
+
+    <style>
+        .faq-hero-bg {
+            width: 100vw;
+            min-width: 100vw;
+            left: 50%;
+            right: 0;
+            transform: translateX(-50%);
+            min-height: 350px;
+            height: 38vh;
+            max-height: 500px;
+            background: 
+                linear-gradient(120deg, rgba(30,58,138,0.7) 60%, rgba(0,0,0,0.5) 100%),
+                url('{{ asset('images/fils.jpg') }}') center center/cover no-repeat;
+            border-radius: 0 0 48px 48px;
+            overflow: hidden;
+            margin-bottom: 0;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .faq-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            text-align: center;
+            padding: 4rem 1rem 3rem 1rem;
+            background: rgba(30,58,138,0.18);
+            border-radius: 18px;
+            backdrop-filter: blur(1px);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .faq-hero-content h1 {
+            color: #fff;
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 12px rgba(30,58,138,0.25);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+    <div class="faq-hero-bg">
+        <div class="faq-hero-content">
+            <h1>📘 Foire Aux Questions</h1>
+        </div>
     </div>
 
     <div class="row">

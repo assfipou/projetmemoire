@@ -1,0 +1,406 @@
+/* Styles pour la simulation pH 2D */
+.ph2d-simulation {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ph2d-canvas-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: white;
+}
+
+.ph2d-controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    min-width: 280px;
+    color: #333;
+}
+
+.ph2d-controls h3 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    text-align: center;
+    color: #333;
+}
+
+.ph2d-control-group {
+    margin-bottom: 15px;
+}
+
+.ph2d-control-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.ph2d-select, .ph2d-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.ph2d-select:focus, .ph2d-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.ph2d-button-group {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.ph2d-btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.ph2d-primary-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.ph2d-primary-btn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.ph2d-secondary-btn {
+    background: #2196F3;
+    color: white;
+}
+
+.ph2d-secondary-btn:hover {
+    background: #1976D2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.ph2d-danger-btn {
+    background: #f44336;
+    color: white;
+}
+
+.ph2d-danger-btn:hover {
+    background: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.ph2d-measurements {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    min-width: 280px;
+    color: #333;
+}
+
+.ph2d-measurements h3 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    text-align: center;
+    color: #333;
+}
+
+.ph2d-measurement-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.ph2d-measurement-value {
+    font-weight: bold;
+    color: #2196F3;
+    background: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    min-width: 80px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ph2d-main-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    z-index: 50;
+}
+
+.ph2d-tank-container {
+    text-align: center;
+}
+
+.ph2d-tank {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    border: 4px solid #333;
+    border-radius: 0 0 100px 100px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.ph2d-liquid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0px;
+    background: #4CAF50;
+    transition: height 0.5s ease, background-color 0.5s ease;
+    border-radius: 0 0 96px 96px;
+}
+
+.ph2d-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4CAF50;
+    border: 3px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: none;
+}
+
+.ph2d-tank-label {
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.ph2d-burettes {
+    display: flex;
+    gap: 40px;
+}
+
+.ph2d-burette {
+    text-align: center;
+}
+
+.ph2d-burette-label {
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.ph2d-burette-container {
+    position: relative;
+    width: 60px;
+    height: 120px;
+    border: 3px solid #333;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.ph2d-burette-liquid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: #4CAF50;
+    transition: height 0.5s ease, background-color 0.5s ease;
+}
+
+.ph2d-drip {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.ph2d-drip.active {
+    background: currentColor;
+    animation: dripAnimation 0.7s ease-out;
+}
+
+@keyframes dripAnimation {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(20px);
+        opacity: 0;
+    }
+}
+
+.ph2d-ph-scale {
+    text-align: center;
+}
+
+.ph2d-ph-scale-label {
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.ph2d-ph-indicator {
+    width: 300px;
+    height: 25px;
+    background: linear-gradient(to right, #ff0000, #ffff00, #00ff00, #0000ff);
+    border-radius: 12px;
+    margin: 10px 0;
+    position: relative;
+    border: 2px solid #ddd;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ph2d-ph-marker {
+    position: absolute;
+    top: -3px;
+    width: 6px;
+    height: 31px;
+    background: #000;
+    border-radius: 3px;
+    transition: left 0.5s ease;
+    border: 2px solid white;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+.ph2d-ph-scale-numbers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: white;
+    margin-top: 5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.ph2d-info-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    min-width: 280px;
+    color: #333;
+}
+
+.ph2d-info-panel h3 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    text-align: center;
+    color: #333;
+}
+
+.ph2d-info-text {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #666;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .ph2d-controls, .ph2d-measurements, .ph2d-info-panel {
+        min-width: 250px;
+        padding: 15px;
+    }
+    
+    .ph2d-main-area {
+        gap: 20px;
+    }
+    
+    .ph2d-burettes {
+        gap: 20px;
+    }
+    
+    .ph2d-ph-indicator {
+        width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ph2d-simulation {
+        height: 600px;
+    }
+    
+    .ph2d-controls, .ph2d-measurements, .ph2d-info-panel {
+        position: relative;
+        margin-bottom: 15px;
+        min-width: auto;
+    }
+    
+    .ph2d-canvas-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .ph2d-main-area {
+        position: relative;
+        transform: none;
+        margin-top: 20px;
+    }
+} 
